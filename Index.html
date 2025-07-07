@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DyffaTopupGame - Top Up Game MLBB, Free Fire, PUBG, eFootball</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --danger: #d63031;
+            --warning: #fdcb6e;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: white !important;
+            margin: 0 8px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        
+        .banner {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .status-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .open {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .closed {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .search-box {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .search-box input {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            color: var(--primary);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--primary);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Modal styles */
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom: none;
+        }
+        
+        .modal-footer {
+            border-top: none;
+        }
+        
+        /* Form styles */
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #eee;
+        }
+        
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary);
+        }
+        
+        .form-label {
+            font-weight: 500;
+        }
+        
+        /* Price list table */
+        .price-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        
+        .price-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .price-table td {
+            background: white;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-table tr:hover td {
+            background: #f8f9fa;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .banner {
+                height: 200px;
+            }
+            
+            .game-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Login/Signup form */
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* Order receipt */
+        .receipt {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 15px;
+        }
+        
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .receipt-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #eee;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">DyffaTopupGame</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#productsModal"><i class="fas fa-gamepad me-1"></i> List Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#feesModal"><i class="fas fa-money-bill-wave me-1"></i> List Fee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#redeemModal"><i class="fas fa-ticket-alt me-1"></i> Redeem Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal"><i class="fas fa-phone-alt me-1"></i> Update Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="fas fa-info-circle me-1"></i> About Me</a>
+                    </li>
+                </ul>
+                <img src="  https://i.ibb.co/RG87MqBs/20250626-055518.png" alt="Admin" class="admin-avatar ms-3" title="Admin">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <!-- Banner Slider -->
+        <div class="swiper banner mb-5">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://i.ibb.co/ZzW1PhXq/20250708-002737.jpg" alt="Promo 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://i.ibb.co/zH6V2qdS/20250708-051237.jpg" alt="Promo 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://i.ibb.co/mFbYFt7M/20250702-220243.jpg" alt="Promo 3">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" placeholder="Search game...">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <!-- Game Icons -->
+        <h2 class="section-title">Top Up Game</h2>
+        <div class="row">
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#mlbbModal">
+                    <img src="https://i.ibb.co/wFdZHPXT/ga-BPy-Um-Lo-M-a-Zff-Mg-KATu1-C3o-ZVz-DNIPk-g-XMw-Eg5kea-Vq-IOWd-Nr-Wk7fop-WQxgq-Pe-RQ-r-TQhx-Gwr-HY.webp" alt="MLBB" class="game-icon">
+                    <h6>Mobile Legends</h6>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#ffModal">
+                    <img src="https://i.ibb.co/xKgxx97b/512x512bb.jpg" alt="Free Fire" class="game-icon">
+                    <h6>Free Fire</h6>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#pubgModal">
+                    <img src="https://i.ibb.co/5gGm90MF/Player-Unknown-s-Battlegrounds-Mobile.webp" alt="PUBG" class="game-icon">
+                    <h6>PUBG Mobile</h6>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#efootballModal">
+                    <img src="https://i.ibb.co/Q3Ds4q6F/a4612010bad757fce970c0705a66bea4.jpg" alt="eFootball" class="game-icon">
+                    <h6>eFootball</h6>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#jokiModal">
+                    <img src="https://i.ibb.co/wNcVStfZ/20250430-140541.jpg" alt="Joki" class="game-icon">
+                    <h6>Joki eFootball</h6>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mb-4">
+                <div class="game-card" data-bs-toggle="modal" data-bs-target="#netflixModal">
+                    <img src="https://i.ibb.co/ynZqm1FM/10478570-10152214521608870-2744465531652776073-n-0.png" alt="Netflix" class="game-icon">
+                    <h6>Netflix</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Products -->
+        <h2 class="section-title mt-5">Produk Populer</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <div class="d-flex align-items-center">
+                        <img src="https://i.ibb.co/wFdZHPXT/ga-BPy-Um-Lo-M-a-Zff-Mg-KATu1-C3o-ZVz-DNIPk-g-XMw-Eg5kea-Vq-IOWd-Nr-Wk7fop-WQxgq-Pe-RQ-r-TQhx-Gwr-HY.webp" alt="MLBB" class="product-img">
+                        <div>
+                            <h5>Mobile Legends</h5>
+                            <p class="mb-1">💎 1285 Diamond → RM82</p>
+                            <button class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#mlbbModal">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <div class="d-flex align-items-center">
+                        <img src="https://i.ibb.co/xKgxx97b/512x512bb.jpg" alt="Free Fire" class="product-img">
+                        <div>
+                            <h5>Free Fire</h5>
+                            <p class="mb-1">💎 2180 Diamond → RM70.50</p>
+                            <button class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#ffModal">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <div class="d-flex align-items-center">
+                        <img src="https://i.ibb.co/Q3Ds4q6F/a4612010bad757fce970c0705a66bea4.jpg" alt="eFootball" class="product-img">
+                        <div>
+                            <h5>eFootball</h5>
+                            <p class="mb-1">💰 5700 Coin → RM168.20</p>
+                            <button class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#efootballModal">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Status Badge -->
+    <div class="status-badge open">
+        <i class="fas fa-store me-1"></i> Kedai Buka: 10AM - 2AM
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>DyffaTopupGame</h5>
+                    <p>Layanan top up game tercepat dan termurah untuk MLBB, Free Fire, PUBG, eFootball, dan Netflix.</p>
+                    <div class="social-icons mt-3">
+                        <a href="https://t.me/a10Days" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/60169445294" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Kontak Kami</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +60 16-944 5294</li>
+                        <li class="mb-2"><i class="fab fa-telegram me-2"></i> @a10Days</li>
+                        <li><i class="fas fa-envelope me-2"></i> admin@dyffatopup.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Jam Operasional</h5>
+                    <p>Setiap Hari</p>
+                    <p>10:00 - 02:00</p>
+                    <p class="mt-3">© Dyffa 2025–2027. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Products Modal -->
+    <div class="modal fade" id="productsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">List Produk</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="productsTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="mlbb-tab" data-bs-toggle="tab" data-bs-target="#mlbb-list" type="button">MLBB</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ff-tab" data-bs-toggle="tab" data-bs-target="#ff-list" type="button">Free Fire</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pubg-tab" data-bs-toggle="tab" data-bs-target="#pubg-list" type="button">PUBG</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="efb-tab" data-bs-toggle="tab" data-bs-target="#efb-list" type="button">eFootball</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="joki-tab" data-bs-toggle="tab" data-bs-target="#joki-list" type="button">Joki eFootball</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="netflix-tab" data-bs-toggle="tab" data-bs-target="#netflix-list" type="button">Netflix</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-3" id="productsTabContent">
+                        <div class="tab-pane fade show active" id="mlbb-list" role="tabpanel">
+                            <table class="price-table">
+                                <tr>
+                                    <th>Diamond</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <tr>
+                                    <td>💎 140 Diamond</td>
+                                    <td>RM9</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 165 Diamond</td>
+                                    <td>RM12</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 182 Diamond</td>
+                                    <td>RM13</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 210 Diamond</td>
+                                    <td>RM15</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 284 Diamond</td>
+                                    <td>RM19</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 326 Diamond</td>
+                                    <td>RM22</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 355 Diamond</td>
+                                    <td>RM24</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 397 Diamond</td>
+                                    <td>RM27</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 429 Diamond</td>
+                                    <td>RM28</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 443 Diamond</td>
+                                    <td>RM29</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 513 Diamond</td>
+                                    <td>RM34</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 569 Diamond</td>
+                                    <td>RM37</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 583 Diamond</td>
+                                    <td>RM38</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 639 Diamond</td>
+                                    <td>RM41</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 716 Diamond</td>
+                                    <td>RM46</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 772 Diamond</td>
+                                    <td>RM51</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 870 Diamond</td>
+                                    <td>RM57</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1071 Diamond</td>
+                                    <td>RM69</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1085 Diamond</td>
+                                    <td>RM70</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1145 Diamond</td>
+                                    <td>RM73</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1159 Diamond</td>
+                                    <td>RM74</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1285 Diamond</td>
+                                    <td>RM82</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1355 Diamond</td>
+                                    <td>RM86</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1446 Diamond</td>
+                                    <td>RM91</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1460 Diamond</td>
+                                    <td>RM92</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1530 Diamond</td>
+                                    <td>RM97</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1586 Diamond</td>
+                                    <td>RM100</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1656 Diamond</td>
+                                    <td>RM104</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1712 Diamond</td>
+                                    <td>RM108</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1875 Diamond</td>
+                                    <td>RM117</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1889 Diamond</td>
+                                    <td>RM118</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2015 Diamond</td>
+                                    <td>RM126</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2162 Diamond</td>
+                                    <td>RM134</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2302 Diamond</td>
+                                    <td>RM143</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2531 Diamond</td>
+                                    <td>RM157</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2605 Diamond</td>
+                                    <td>RM161</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2703 Diamond</td>
+                                    <td>RM167</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2801 Diamond</td>
+                                    <td>RM177</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2976 Diamond</td>
+                                    <td>RM182</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2990 Diamond</td>
+                                    <td>RM183</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3032 Diamond</td>
+                                    <td>RM185</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3102 Diamond</td>
+                                    <td>RM190</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3274 Diamond</td>
+                                    <td>RM200</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3345 Diamond</td>
+                                    <td>RM204</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3475 Diamond</td>
+                                    <td>RM212</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3517 Diamond</td>
+                                    <td>RM215</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3692 Diamond</td>
+                                    <td>RM225</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3734 Diamond</td>
+                                    <td>RM227</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3846 Diamond</td>
+                                    <td>RM234</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3976 Diamond</td>
+                                    <td>RM242</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4047 Diamond</td>
+                                    <td>RM246</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4121 Diamond</td>
+                                    <td>RM251</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4261 Diamond</td>
+                                    <td>RM259</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4331 Diamond</td>
+                                    <td>RM264</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4436 Diamond</td>
+                                    <td>RM269</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4562 Diamond</td>
+                                    <td>RM276</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4632 Diamond</td>
+                                    <td>RM281</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4706 Diamond</td>
+                                    <td>RM285</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4851 Diamond</td>
+                                    <td>RM294</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4921 Diamond</td>
+                                    <td>RM298</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5138 Diamond</td>
+                                    <td>RM311</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5278 Diamond</td>
+                                    <td>RM319</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5422 Diamond</td>
+                                    <td>RM328</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5567 Diamond</td>
+                                    <td>RM337</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5637 Diamond</td>
+                                    <td>RM341</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5707 Diamond</td>
+                                    <td>RM345</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5854 Diamond</td>
+                                    <td>RM361</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5966 Diamond</td>
+                                    <td>RM362</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 6092 Diamond</td>
+                                    <td>RM370</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 6236 Diamond</td>
+                                    <td>RM378</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="ff-list" role="tabpanel">
+                            <table class="price-table">
+                                <tr>
+                                    <th>Diamond</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <tr>
+                                    <td>💎 130 Diamond</td>
+                                    <td>RM3.50</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 210 Diamond</td>
+                                    <td>RM8.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 310 Diamond</td>
+                                    <td>RM10.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 400 Diamond</td>
+                                    <td>RM15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 550 Diamond</td>
+                                    <td>RM18.20</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 625 Diamond</td>
+                                    <td>RM21.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 750 Diamond</td>
+                                    <td>RM26.50</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 859 Diamond</td>
+                                    <td>RM28.66</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 995 Diamond</td>
+                                    <td>RM33.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1040 Diamond</td>
+                                    <td>RM35.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1130 Diamond</td>
+                                    <td>RM48.95</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 1580 Diamond</td>
+                                    <td>RM52.65</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2180 Diamond</td>
+                                    <td>RM70.50</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 2200 Diamond</td>
+                                    <td>RM85.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 3240 Diamond</td>
+                                    <td>RM105.40</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 4360 Diamond</td>
+                                    <td>RM141.00</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 5600 Diamond</td>
+                                    <td>RM175.50</td>
+                                </tr>
+                                <tr>
+                                    <td>💎 11500 Diamond</td>
+                                    <td>RM360.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="pubg-list" role="tabpanel">
+                            <table class="price-table">
+                                <tr>
+                                    <th>UC</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 60 UC</td>
+                                    <td>RM4.00</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 300+25 UC</td>
+                                    <td>RM19.02</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 600+60 UC</td>
+                                    <td>RM38.20</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 1500+300 UC</td>
+                                    <td>RM95.30</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 3000+850 UC</td>
+                                    <td>RM190.00</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 6000+2100 UC</td>
+                                    <td>RM379.20</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 12000+4200 UC</td>
+                                    <td>RM758.00</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 18000+6300 UC</td>
+                                    <td>RM1136.20</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 24000+8400 UC</td>
+                                    <td>RM1515.00</td>
+                                </tr>
+                                <tr>
+                                    <td>🛡️ 30000+10500 UC</td>
+                                    <td>RM1894.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="efb-list" role="tabpanel">
+                            <ul class="nav nav-tabs" id="efbTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="android-tab" data-bs-toggle="tab" data-bs-target="#android" type="button">Android</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="ios-tab" data-bs-toggle="tab" data-bs-target="#ios" type="button">iOS</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content p-3" id="efbTabContent">
+                                <div class="tab-pane fade show active" id="android" role="tabpanel">
+                                    <table class="price-table">
+                                        <tr>
+                                            <th>Coin</th>
+                                            <th>Harga</th>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 130 Coin</td>
+                                            <td>RM4.90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 300 Coin</td>
+                                            <td>RM10.55</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 550 Coin</td>
+                                            <td>RM18.90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 750 Coin</td>
+                                            <td>RM25.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 1040 Coin</td>
+                                            <td>RM35.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 2130 Coin</td>
+                                            <td>RM69.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 3250 Coin</td>
+                                            <td>RM102.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 5700 Coin</td>
+                                            <td>RM168.20</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="ios" role="tabpanel">
+                                    <table class="price-table">
+                                        <tr>
+                                            <th>Coin</th>
+                                            <th>Harga</th>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 130 Coin</td>
+                                            <td>RM4.50</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 300 Coin</td>
+                                            <td>RM10.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 550 Coin</td>
+                                            <td>RM17.90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 1040 Coin</td>
+                                            <td>RM34.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 2130 Coin</td>
+                                            <td>RM67.30</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 3250 Coin</td>
+                                            <td>RM98.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>💰 5700 Coin</td>
+                                            <td>RM162.00</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="joki-list" role="tabpanel">
+                            <div class="alert alert-info">
+                                <strong>Joki eFootball</strong> - Layanan joki untuk meningkatkan divisyen akun eFootball Anda.
+                            </div>
+                            <p>Metode login:</p>
+                            <ul>
+                                <li>Konami ID</li>
+                                <li>Google Play</li>
+                            </ul>
+                            <p>Silahkan hubungi admin via WhatsApp untuk informasi lebih lanjut.</p>
+                        </div>
+                        <div class="tab-pane fade" id="netflix-list" role="tabpanel">
+                            <table class="price-table">
+                                <tr>
+                                    <th>Paket</th>
+                                    <th>Harga</th>
+                                </tr>
+                                <tr>
+                                    <td>🎬 1 Minggu</td>
+                                    <td>RM3.00</td>
+                                </tr>
+                                <tr>
+                                    <td>🎬 1 Bulan</td>
+                                    <td>RM9.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fees Modal -->
+    <div class="modal fade" id="feesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">List Fee</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="price-table">
+                        <tr>
+                            <th>Game</th>
+                            <th>Fee</th>
+                        </tr>
+                        <tr>
+                            <td>Mobile Legends</td>
+                            <td>+RM0.80</td>
+                        </tr>
+                        <tr>
+                            <td>Free Fire</td>
+                            <td>+RM0.70</td>
+                        </tr>
+                        <tr>
+                            <td>eFootball</td>
+                            <td>+RM0.20</td>
+                        </tr>
+                        <tr>
+                            <td>Netflix</td>
+                            <td>+RM0.50</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Redeem Modal -->
+    <div class="modal fade" id="redeemModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Redeem Code</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="redeemCode" class="form-label">Masukkan Kode Redeem</label>
+                        <input type="text" class="form-control" id="redeemCode" placeholder="XXXX-XXXX-XXXX">
+                    </div>
+                    <button class="btn btn-primary w-100">Tukar Kode</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Contact</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="telegram" class="form-label">Telegram</label>
+                        <input type="text" class="form-control" id="telegram" value="@a10Days">
+                    </div>
+                    <div class="mb-3">
+                        <label for="whatsapp" class="form-label">WhatsApp</label>
+                        <input type="text" class="form-control" id="whatsapp" value="+60 16-944 5294">
+                    </div>
+                    <button class="btn btn-primary w-100">Simpan Perubahan</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">About Me</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <img src="https://i.ibb.co/RG87MqBs/20250626-055518.png" alt="Admin" class="admin-avatar" style="width: 100px; height: 100px;">
+                        <h5 class="mt-3">DyffaTopupGame</h5>
+                    </div>
+                    <p>Layanan top up game terpercaya sejak 2025. Menyediakan layanan top up untuk berbagai game populer dengan harga termurah dan proses tercepat.</p>
+                    <p><i class="fas fa-check-circle text-success me-2"></i> Proses instan 1-5 menit</p>
+                    <p><i class="fas fa-check-circle text-success me-2"></i> Harga termurah di pasaran</p>
+                    <p><i class="fas fa-check-circle text-success me-2"></i> Layanan customer service dari jam 10/2 pagi</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Order Modals -->
+    <!-- MLBB Modal -->
+    <div class="modal fade" id="mlbbModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mobile Legends Top Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="mlbbForm">
+                        <div class="mb-3">
+                            <label for="mlbbPackage" class="form-label">Pilih Paket</label>
+                            <select class="form-select" id="mlbbPackage" required>
+                                <option value="" selected disabled>Pilih jumlah diamond</option>
+                                <option value="140">💎 140 Diamond → RM9</option>
+                                <option value="165">💎 165 Diamond → RM12</option>
+                                <option value="182">💎 182 Diamond → RM13</option>
+                                <option value="210">💎 210 Diamond → RM15</option>
+                                <option value="284">💎 284 Diamond → RM19</option>
+                                <option value="326">💎 326 Diamond → RM22</option>
+                                <option value="355">💎 355 Diamond → RM24</option>
+                                <option value="397">💎 397 Diamond → RM27</option>
+                                <option value="429">💎 429 Diamond → RM28</option>
+                                <option value="443">💎 443 Diamond → RM29</option>
+                                <option value="513">💎 513 Diamond → RM34</option>
+                                <option value="569">💎 569 Diamond → RM37</option>
+                                <option value="583">💎 583 Diamond → RM38</option>
+                                <option value="639">💎 639 Diamond → RM41</option>
+                                <option value="716">💎 716 Diamond → RM46</option>
+                                <option value="772">💎 772 Diamond → RM51</option>
+                                <option value="870">💎 870 Diamond → RM57</option>
+                                <option value="1071">💎 1071 Diamond → RM69</option>
+                                <option value="1085">💎 1085 Diamond → RM70</option>
+                                <option value="1145">💎 1145 Diamond → RM73</option>
+                                <option value="1159">💎 1159 Diamond → RM74</option>
+                                <option value="1285">💎 1285 Diamond → RM82</option>
+                                <option value="1355">💎 1355 Diamond → RM86</option>
+                                <option value="1446">💎 1446 Diamond → RM91</option>
+                                <option value="1460">💎 1460 Diamond → RM92</option>
+                                <option value="1530">💎 1530 Diamond → RM97</option>
+                                <option value="1586">💎 1586 Diamond → RM100</option>
+                                <option value="1656">💎 1656 Diamond → RM104</option>
+                                <option value="1712">💎 1712 Diamond → RM108</option>
+                                <option value="1875">💎 1875 Diamond → RM117</option>
+                                <option value="1889">💎 1889 Diamond → RM118</option>
+                                <option value="2015">💎 2015 Diamond → RM126</option>
+                                <option value="2162">💎 2162 Diamond → RM134</option>
+                                <option value="2302">💎 2302 Diamond → RM143</option>
+                                <option value="2531">💎 2531 Diamond → RM157</option>
+                                <option value="2605">💎 2605 Diamond → RM161</option>
+                                <option value="2703">💎 2703 Diamond → RM167</option>
+                                <option value="2801">💎 2801 Diamond → RM177</option>
+                                <option value="2976">💎 2976 Diamond → RM182</option>
+                                <option value="2990">💎 2990 Diamond → RM183</option>
+                                <option value="3032">💎 3032 Diamond → RM185</option>
+                                <option value="3102">💎 3102 Diamond → RM190</option>
+                                <option value="3274">💎 3274 Diamond → RM200</option>
+                                <option value="3345">💎 3345 Diamond → RM204</option>
+                                <option value="3475">💎 3475 Diamond → RM212</option>
+                                <option value="3517">💎 3517 Diamond → RM215</option>
+                                <option value="3692">💎 3692 Diamond → RM225</option>
+                                <option value="3734">💎 3734 Diamond → RM227</option>
+                                <option value="3846">💎 3846 Diamond → RM234</option>
+                                <option value="3976">💎 3976 Diamond → RM242</option>
+                                <option value="4047">💎 4047 Diamond → RM246</option>
+                                <option value="4121">💎 4121 Diamond → RM251</option>
+                                <option value="4261">💎 4261 Diamond → RM259</option>
+                                <option value="4331">💎 4331 Diamond → RM264</option>
+                                <option value="4436">💎 4436 Diamond → RM269</option>
+                                <option value="4562">💎 4562 Diamond → RM276</option>
+                                <option value="4632">💎 4632 Diamond → RM281</option>
+                                <option value="4706">💎 4706 Diamond → RM285</option>
+                                <option value="4851">💎 4851 Diamond → RM294</option>
+                                <option value="4921">💎 4921 Diamond → RM298</option>
+                                <option value="5138">💎 5138 Diamond → RM311</option>
+                                <option value="5278">💎 5278 Diamond → RM319</option>
+                                <option value="5422">💎 5422 Diamond → RM328</option>
+                                <option value="5567">💎 5567 Diamond → RM337</option>
+                                <option value="5637">💎 5637 Diamond → RM341</option>
+                                <option value="5707">💎 5707 Diamond → RM345</option>
+                                <option value="5854">💎 5854 Diamond → RM361</option>
+                                <option value="5966">💎 5966 Diamond → RM362</option>
+                                <option value="6092">💎 6092 Diamond → RM370</option>
+                                <option value="6236">💎 6236 Diamond → RM378</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mlbbUserId" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="mlbbUserId" required placeholder="Contoh: 123456789">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mlbbServer" class="form-label">Server</label>
+                            <input type="text" class="form-control" id="mlbbServer" required placeholder="Contoh: 1234">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mlbbPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="mlbbPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="receipt mt-4">
+                            <div class="receipt-header">
+                                <h5>Ringkasan Pesanan</h5>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Harga Diamond:</span>
+                                <span id="mlbbBasePrice">RM0.00</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Fee MLBB:</span>
+                                <span>+RM0.80</span>
+                            </div>
+                            <div class="receipt-total">
+                                <span>Total:</span>
+                                <span id="mlbbTotalPrice">RM0.80</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Free Fire Modal -->
+    <div class="modal fade" id="ffModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Free Fire Top Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="ffForm">
+                        <div class="mb-3">
+                            <label for="ffPackage" class="form-label">Pilih Paket</label>
+                            <select class="form-select" id="ffPackage" required>
+                                <option value="" selected disabled>Pilih jumlah diamond</option>
+                                <option value="130">💎 130 Diamond → RM3.50</option>
+                                <option value="210">💎 210 Diamond → RM8.00</option>
+                                <option value="310">💎 310 Diamond → RM10.00</option>
+                                <option value="400">💎 400 Diamond → RM15.00</option>
+                                <option value="550">💎 550 Diamond → RM18.20</option>
+                                <option value="625">💎 625 Diamond → RM21.00</option>
+                                <option value="750">💎 750 Diamond → RM26.50</option>
+                                <option value="859">💎 859 Diamond → RM28.66</option>
+                                <option value="995">💎 995 Diamond → RM33.00</option>
+                                <option value="1040">💎 1040 Diamond → RM35.00</option>
+                                <option value="1130">💎 1130 Diamond → RM48.95</option>
+                                <option value="1580">💎 1580 Diamond → RM52.65</option>
+                                <option value="2180">💎 2180 Diamond → RM70.50</option>
+                                <option value="2200">💎 2200 Diamond → RM85.00</option>
+                                <option value="3240">💎 3240 Diamond → RM105.40</option>
+                                <option value="4360">💎 4360 Diamond → RM141.00</option>
+                                <option value="5600">💎 5600 Diamond → RM175.50</option>
+                                <option value="11500">💎 11500 Diamond → RM360.00</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ffUserId" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="ffUserId" required placeholder="Contoh: 123456789">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ffPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="ffPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="receipt mt-4">
+                            <div class="receipt-header">
+                                <h5>Ringkasan Pesanan</h5>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Harga Diamond:</span>
+                                <span id="ffBasePrice">RM0.00</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Fee Free Fire:</span>
+                                <span>+RM0.70</span>
+                            </div>
+                            <div class="receipt-total">
+                                <span>Total:</span>
+                                <span id="ffTotalPrice">RM0.70</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PUBG Modal -->
+    <div class="modal fade" id="pubgModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">PUBG Mobile Top Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="pubgForm">
+                        <div class="mb-3">
+                            <label for="pubgPackage" class="form-label">Pilih Paket</label>
+                            <select class="form-select" id="pubgPackage" required>
+                                <option value="" selected disabled>Pilih jumlah UC</option>
+                                <option value="60">🛡️ 60 UC → RM4.00</option>
+                                <option value="325">🛡️ 300+25 UC → RM19.02</option>
+                                <option value="660">🛡️ 600+60 UC → RM38.20</option>
+                                <option value="1800">🛡️ 1500+300 UC → RM95.30</option>
+                                <option value="3850">🛡️ 3000+850 UC → RM190.00</option>
+                                <option value="8100">🛡️ 6000+2100 UC → RM379.20</option>
+                                <option value="16200">🛡️ 12000+4200 UC → RM758.00</option>
+                                <option value="24300">🛡️ 18000+6300 UC → RM1136.20</option>
+                                <option value="32400">🛡️ 24000+8400 UC → RM1515.00</option>
+                                <option value="40500">🛡️ 30000+10500 UC → RM1894.00</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pubgUserId" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="pubgUserId" required placeholder="Contoh: 123456789">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pubgPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="pubgPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="receipt mt-4">
+                            <div class="receipt-header">
+                                <h5>Ringkasan Pesanan</h5>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Harga UC:</span>
+                                <span id="pubgBasePrice">RM0.00</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Fee PUBG:</span>
+                                <span>+RM0.00</span>
+                            </div>
+                            <div class="receipt-total">
+                                <span>Total:</span>
+                                <span id="pubgTotalPrice">RM0.00</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- eFootball Modal -->
+    <div class="modal fade" id="efootballModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">eFootball Top Up</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="efootballForm">
+                        <div class="mb-3">
+                            <label for="efootballPackage" class="form-label">Pilih Paket</label>
+                            <select class="form-select" id="efootballPackage" required>
+                                <option value="" selected disabled>Pilih jumlah coin</option>
+                                <option value="130">💰 130 Coin → RM4.90</option>
+                                <option value="300">💰 300 Coin → RM10.55</option>
+                                <option value="550">💰 550 Coin → RM18.90</option>
+                                <option value="750">💰 750 Coin → RM25.02</option>
+                                <option value="1040">💰 1040 Coin → RM35.00</option>
+                                <option value="2130">💰 2130 Coin → RM69.00</option>
+                                <option value="3250">💰 3250 Coin → RM102.00</option>
+                                <option value="5700">💰 5700 Coin → RM168.20</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="efootballEmail" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="efootballEmail" required placeholder="Email akun eFootball">
+                        </div>
+                        <div class="mb-3">
+                            <label for="efootballPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="efootballPassword" placeholder="Opsional (jika diperlukan)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="efootballName" class="form-label">In-Game Name</label>
+                            <input type="text" class="form-control" id="efootballName" required placeholder="Nama dalam game">
+                        </div>
+                        <div class="mb-3">
+                            <label for="efootballMethod" class="form-label">Metode Login</label>
+                            <select class="form-select" id="efootballMethod" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="Konami">Konami ID</option>
+                                <option value="Google Play">Google Play</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="efootballPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="efootballPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="receipt mt-4">
+                            <div class="receipt-header">
+                                <h5>Ringkasan Pesanan</h5>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Harga Coin:</span>
+                                <span id="efootballBasePrice">RM0.00</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Fee eFootball:</span>
+                                <span>+RM0.20</span>
+                            </div>
+                            <div class="receipt-total">
+                                <span>Total:</span>
+                                <span id="efootballTotalPrice">RM0.20</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Joki eFootball Modal -->
+    <div class="modal fade" id="jokiModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Joki eFootball</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="jokiForm">
+                        <div class="mb-3">
+                            <label for="jokiEmail" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="jokiEmail" required placeholder="Email akun eFootball">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jokiPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="jokiPassword" required placeholder="Password akun">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jokiMethod" class="form-label">Metode Login</label>
+                            <select class="form-select" id="jokiMethod" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="Konami">Konami ID</option>
+                                <option value="Google Play">Google Play</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jokiTarget" class="form-label">Target Rank</label>
+                            <select class="form-select" id="jokiTarget" required>
+                                <option value="" selected disabled>Pilih target rank</option>
+                                <option value="Legend">Legend</option>
+                                <option value="Top 100">Top 100</option>
+                                <option value="Custom">Custom (Diskusikan dengan admin)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jokiPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="jokiPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Perhatian:</strong> Harga joki bervariasi tergantung target rank dan kondisi akun. Admin akan menghubungi Anda via WhatsApp untuk konfirmasi harga.
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Netflix Modal -->
+    <div class="modal fade" id="netflixModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Netflix Account</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="netflixForm">
+                        <div class="mb-3">
+                            <label for="netflixPackage" class="form-label">Pilih Paket</label>
+                            <select class="form-select" id="netflixPackage" required>
+                                <option value="" selected disabled>Pilih paket Netflix</option>
+                                <option value="1week">🎬 1 Minggu → RM3.00</option>
+                                <option value="1month">🎬 1 Bulan → RM9.00</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="netflixEmail" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="netflixEmail" required placeholder="Email untuk login Netflix">
+                        </div>
+                        <div class="mb-3">
+                            <label for="netflixPayment" class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="netflixPayment" required>
+                                <option value="" selected disabled>Pilih metode</option>
+                                <option value="TNG">Touch 'n Go</option>
+                                <option value="DuitNow">DuitNow</option>
+                            </select>
+                        </div>
+                        <div class="receipt mt-4">
+                            <div class="receipt-header">
+                                <h5>Ringkasan Pesanan</h5>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Harga Paket:</span>
+                                <span id="netflixBasePrice">RM0.00</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>Fee Netflix:</span>
+                                <span>+RM0.50</span>
+                            </div>
+                            <div class="receipt-total">
+                                <span>Total:</span>
+                                <span id="netflixTotalPrice">RM0.50</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Pesan via WhatsApp</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Log Masuk</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Log Masuk</button>
+                        <div class="text-center mt-3">
+                            <p>Belum punya akun? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Daftar disini</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Daftar Akun</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerConfirm" class="form-label">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="registerConfirm" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Daftar</button>
+                        <div class="text-center mt-3">
+                            <p>Sudah punya akun? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Log Masuk</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper for banner
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Shop status (open/closed)
+        function updateShopStatus() {
+            const now = new Date();
+            const hours = now.getHours();
+            const statusBadge = document.querySelector('.status-badge');
+            
+            // Shop is open from 10AM to 2AM
+            const isOpen = (hours >= 10 || hours < 2);
+            
+            if (isOpen) {
+                statusBadge.className = 'status-badge open pulse';
+                statusBadge.innerHTML = '<i class="fas fa-store me-1"></i> Kedai Buka: 10AM - 2AM';
+            } else {
+                statusBadge.className = 'status-badge closed';
+                statusBadge.innerHTML = '<i class="fas fa-store-slash me-1"></i> Kedai Tutup: Buka jam 10AM';
+            }
+        }
+
+        // Update shop status every minute
+        updateShopStatus();
+        setInterval(updateShopStatus, 60000);
+
+        // Price calculation for MLBB
+        const mlbbPackage = document.getElementById('mlbbPackage');
+        const mlbbBasePrice = document.getElementById('mlbbBasePrice');
+        const mlbbTotalPrice = document.getElementById('mlbbTotalPrice');
+
+        mlbbPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const priceText = selectedOption.text.split('→')[1].trim();
+            const basePrice = parseFloat(priceText.replace('RM', ''));
+            
+            mlbbBasePrice.textContent = priceText;
+            mlbbTotalPrice.textContent = 'RM' + (basePrice + 0.80).toFixed(2);
+        });
+
+        // Price calculation for Free Fire
+        const ffPackage = document.getElementById('ffPackage');
+        const ffBasePrice = document.getElementById('ffBasePrice');
+        const ffTotalPrice = document.getElementById('ffTotalPrice');
+
+        ffPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const priceText = selectedOption.text.split('→')[1].trim();
+            const basePrice = parseFloat(priceText.replace('RM', ''));
+            
+            ffBasePrice.textContent = priceText;
+            ffTotalPrice.textContent = 'RM' + (basePrice + 0.70).toFixed(2);
+        });
+
+        // Price calculation for PUBG
+        const pubgPackage = document.getElementById('pubgPackage');
+        const pubgBasePrice = document.getElementById('pubgBasePrice');
+        const pubgTotalPrice = document.getElementById('pubgTotalPrice');
+
+        pubgPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const priceText = selectedOption.text.split('→')[1].trim();
+            const basePrice = parseFloat(priceText.replace('RM', ''));
+            
+            pubgBasePrice.textContent = priceText;
+            pubgTotalPrice.textContent = 'RM' + (basePrice + 0.00).toFixed(2);
+        });
+
+        // Price calculation for eFootball
+        const efootballPackage = document.getElementById('efootballPackage');
+        const efootballBasePrice = document.getElementById('efootballBasePrice');
+        const efootballTotalPrice = document.getElementById('efootballTotalPrice');
+
+        efootballPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const priceText = selectedOption.text.split('→')[1].trim();
+            const basePrice = parseFloat(priceText.replace('RM', ''));
+            
+            efootballBasePrice.textContent = priceText;
+            efootballTotalPrice.textContent = 'RM' + (basePrice + 0.20).toFixed(2);
+        });
+
+        // Price calculation for Netflix
+        const netflixPackage = document.getElementById('netflixPackage');
+        const netflixBasePrice = document.getElementById('netflixBasePrice');
+        const netflixTotalPrice = document.getElementById('netflixTotalPrice');
+
+        netflixPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const priceText = selectedOption.text.split('→')[1].trim();
+            const basePrice = parseFloat(priceText.replace('RM', ''));
+            
+            netflixBasePrice.textContent = priceText;
+            netflixTotalPrice.textContent = 'RM' + (basePrice + 0.50).toFixed(2);
+        });
+
+        // Form submission handlers
+        document.getElementById('mlbbForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('MLBB');
+        });
+
+        document.getElementById('ffForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('Free Fire');
+        });
+
+        document.getElementById('pubgForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('PUBG');
+        });
+
+        document.getElementById('efootballForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('eFootball');
+        });
+
+        document.getElementById('jokiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('Joki eFootball');
+        });
+
+        document.getElementById('netflixForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitOrder('Netflix');
+        });
+
+        // Function to submit order via WhatsApp
+        function submitOrder(game) {
+            let message = `Halo, saya ingin order top up ${game}:\n\n`;
+            const orderNumber = 'ORD-' + Math.floor(Math.random() * 1000000);
+            
+            if (game === 'MLBB') {
+                const package = document.getElementById('mlbbPackage').options[document.getElementById('mlbbPackage').selectedIndex].text;
+                const userId = document.getElementById('mlbbUserId').value;
+                const server = document.getElementById('mlbbServer').value;
+                const payment = document.getElementById('mlbbPayment').value;
+                const total = document.getElementById('mlbbTotalPrice').textContent;
+                
+                message += `📦 Paket: ${package}\n`;
+                message += `🆔 User ID: ${userId}\n`;
+                message += `🌐 Server: ${server}\n`;
+                message += `💳 Metode Bayar: ${payment}\n`;
+                message += `💰 Total: ${total}\n\n`;
+            } 
+            else if (game === 'Free Fire') {
+                const package = document.getElementById('ffPackage').options[document.getElementById('ffPackage').selectedIndex].text;
+                const userId = document.getElementById('ffUserId').value;
+                const payment = document.getElementById('ffPayment').value;
+                const total = document.getElementById('ffTotalPrice').textContent;
+                
+                message += `📦 Paket: ${package}\n`;
+                message += `🆔 User ID: ${userId}\n`;
+                message += `💳 Metode Bayar: ${payment}\n`;
+                message += `💰 Total: ${total}\n\n`;
+            }
+            else if (game === 'PUBG') {
+                const package = document.getElementById('pubgPackage').options[document.getElementById('pubgPackage').selectedIndex].text;
+                const userId = document.getElementById('pubgUserId').value;
+                const payment = document.getElementById('pubgPayment').value;
+                const total = document.getElementById('pubgTotalPrice').textContent;
+                
+                message += `📦 Paket: ${package}\n`;
+                message += `🆔 User ID: ${userId}\n`;
+                message += `💳 Metode Bayar: ${payment}\n`;
+                message += `💰 Total: ${total}\n\n`;
+            }
+            else if (game === 'eFootball') {
+                const package = document.getElementById('efootballPackage').options[document.getElementById('efootballPackage').selectedIndex].text;
+                const email = document.getElementById('efootballEmail').value;
+                const name = document.getElementById('efootballName').value;
+                const method = document.getElementById('efootballMethod').value;
+                const payment = document.getElementById('efootballPayment').value;
+                const total = document.getElementById('efootballTotalPrice').textContent;
+                
+                message += `📦 Paket: ${package}\n`;
+                message += `📧 Email: ${email}\n`;
+                message += `👤 Nama: ${name}\n`;
+                message += `🔑 Metode Login: ${method}\n`;
+                message += `💳 Metode Bayar: ${payment}\n`;
+                message += `💰 Total: ${total}\n\n`;
+            }
+            else if (game === 'Joki eFootball') {
+                const email = document.getElementById('jokiEmail').value;
+                const method = document.getElementById('jokiMethod').value;
+                const target = document.getElementById('jokiTarget').value;
+                const payment = document.getElementById('jokiPayment').value;
+                
+                message += `📧 Email: ${email}\n`;
+                message += `🔑 Metode Login: ${method}\n`;
+                message += `🎯 Target Rank: ${target}\n`;
+                message += `💳 Metode Bayar: ${payment}\n\n`;
+                message += `💰 Harga akan dikonfirmasi admin\n\n`;
+            }
+            else if (game === 'Netflix') {
+                const package = document.getElementById('netflixPackage').options[document.getElementById('netflixPackage').selectedIndex].text;
+                const email = document.getElementById('netflixEmail').value;
+                const payment = document.getElementById('netflixPayment').value;
+                const total = document.getElementById('netflixTotalPrice').textContent;
+                
+                message += `📦 Paket: ${package}\n`;
+                message += `📧 Email: ${email}\n`;
+                message += `💳 Metode Bayar: ${payment}\n`;
+                message += `💰 Total: ${total}\n\n`;
+            }
+            
+            message += `🛒 No. Pesanan: ${orderNumber}\n`;
+            message += `🕒 Waktu Order: ${new Date().toLocaleString()}\n\n`;
+            message += `Terima kasih!`;
+            
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/60169445294?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappUrl, '_blank');
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.querySelector(`#${game.toLowerCase().replace(' ', '')}Modal`));
+            modal.hide();
+            
+            // Show success alert
+            alert(`Pesanan ${game} Anda berhasil dibuat (No. Pesanan: ${orderNumber}). Silahkan lanjutkan pembayaran via WhatsApp.`);
+        }
+
+        // Login/Register functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login berhasil!');
+            const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            modal.hide();
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pendaftaran berhasil! Silahkan login.');
+            const modal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            modal.hide();
+            
+            // Show login modal
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        });
+
+        // Search functionality
+        document.querySelector('.search-box input').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.toLowerCase();
+                const games = ['mlbb', 'free fire', 'pubg', 'efootball', 'joki', 'netflix'];
+                
+                if (games.includes(query)) {
+                    const modalId = query.replace(' ', '') + 'Modal';
+                    const modal = new bootstrap.Modal(document.getElementById(modalId));
+                    modal.show();
+                } else {
+                    alert('Game tidak ditemukan. Coba cari dengan nama game yang benar (MLBB, Free Fire, PUBG, eFootball, Joki, Netflix)');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
